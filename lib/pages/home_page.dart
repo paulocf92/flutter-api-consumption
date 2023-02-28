@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_list/models/user_model.dart';
+import 'package:flutter_list/pages/widgets/user_tile.dart';
 import 'package:flutter_list/repositories/users_repository.dart';
 import 'package:flutter_list/repositories/users_repository_impl.dart';
 
@@ -48,7 +49,7 @@ class _HomePageState extends State<HomePage> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.deepPurple,
       ),
       scaffoldMessengerKey: _messengerKey,
       home: Scaffold(
@@ -60,46 +61,30 @@ class _HomePageState extends State<HomePage> {
           padding: const EdgeInsets.all(8.0),
           child: Center(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Visibility(
                     visible: loading, child: const CircularProgressIndicator()),
                 Visibility(
                   visible: usersModel != null,
                   child: Expanded(
-                    child: Column(
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                          alignment: Alignment.center,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                              color: Colors.orange[300],
-                              borderRadius: BorderRadius.circular(14)),
-                          child: const Text(
-                            'Names',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: ListView.builder(
-                            itemCount: usersModel?.length,
-                            itemBuilder: (context, index) {
-                              return ListTile(
-                                title: Center(
-                                  child: Text(
-                                    usersModel![index].first_name,
-                                  ),
-                                ),
-                                onTap: () {},
-                              );
-                            },
-                          ),
-                        ),
-                      ],
+                    child: ListView.separated(
+                      itemCount: usersModel?.length ?? 0,
+                      itemBuilder: (context, index) {
+                        return UserTile(
+                          user: usersModel![index],
+                          callback: () {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                    'User: ${usersModel![index].first_name}'),
+                              ),
+                            );
+                          },
+                        );
+                      },
+                      separatorBuilder: (context, _) =>
+                          const SizedBox(height: 10),
                     ),
                   ),
                 ),
