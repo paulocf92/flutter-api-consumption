@@ -1,16 +1,18 @@
-# flutter_list
+# Flutter - API Consumption
 
-A new Flutter project.
+<img width="250px" alt="Flutter List" title="Flutter List" src="./.github/app.gif" />
 
-## Getting Started
+This project showcases how to consume an API and display a custom scrollable list in the app. The API connection implementation uses a repository/service approach.
 
-This project is a starting point for a Flutter application.
+## 📑 Content
+- Widget construction (ListView, Row, Column, Expanded, Inkwell, Scaffold Snackbar, etc)
+- Dio package for API consumption
+- Repository/Service pattern
+- Models
+- Extensions
 
-A few resources to get you started if this is your first Flutter project:
+## 📝 License
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+This project is under MIT license.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Made with ❤️ by [Paulo Filho](https://www.linkedin.com/in/paulocf92/)!
